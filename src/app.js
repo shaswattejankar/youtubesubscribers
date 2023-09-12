@@ -19,7 +19,7 @@ app.get("/subscribers", async (req, res) => {
         }else{
             res.status(204).json({
                 status:"204",
-                message:"data not found!"
+                message:"data not found!",
             })
         }
         
@@ -51,16 +51,17 @@ app.get("/subscribers/:id", async (req, res) => {
         const matchedSubscriber = await Subscribers.findOne({ _id: req.params.id });
         if(matchedSubscriber){
             res.status(200).json(matchedSubscriber);
-        }else{
-            res.status(404).json({
-                status:"404",
-                message:"data not found <> " + err.message
+        }
+        else{
+            res.status(400).json({
+                status:"400",
+                message:"data not found <> ",
             })
         }
     } catch (err) {
-        res.status(404).json({
-                status: "404",
-                message: "ERR : Not of type ObjectId. " + err.message,
+        res.status(400).json({
+                status: "400",
+                message: err.message,
             });
     }
 });
