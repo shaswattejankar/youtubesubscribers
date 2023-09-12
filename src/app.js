@@ -54,7 +54,7 @@ app.get("/subscribers/:id", async (req, res) => {
         }else{
             res.status(404).json({
                 status:"404",
-                message:"data not found <> invalid request message"
+                message:"data not found <> " + err.message
             })
         }
     } catch (err) {
