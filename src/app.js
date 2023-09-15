@@ -51,7 +51,7 @@ app.get("/subscribers/:id", async (req, res) => {
     if (matchedSubscriber) {
       res.status(200).json(matchedSubscriber);
     } else {
-      throw { message: "data not found." };
+      throw { message: "data not found. id does not match" };
     }
   } catch (err) {
     res.status(400).json({
