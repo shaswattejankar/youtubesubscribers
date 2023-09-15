@@ -13,7 +13,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 
 mongoose.connect(DATABASE_URL, {serverSelectionTimeoutMS:3000})
 .then( ()=> {
-    console.log('connected to MongoDb database');
+    console.log('connected to MongoDb Atlas database');
 }).catch( (error)=>{
     console.log(error);
 })
