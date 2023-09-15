@@ -61,4 +61,8 @@ app.get("/subscribers/:id", async (req, res) => {
   }
 });
 
+app.get("/api-schema-docs", async(req,res)=>{
+  res.redirect( "https://documenter.getpostman.com/view/29625170/2s9YC4VYRw" );
+})
+
 module.exports = app;
