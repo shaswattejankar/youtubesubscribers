@@ -3,14 +3,11 @@ const app = express();
 
 // Your code goes here
 
+const Subscribers = require("./models/subscribers");
+
 // METHODS / APIs :-
 
 // 1. GET https://localhost:3000/subscribers  for array of subscribers(an Object)
-// 2. GET https://localhost:3000/subscribers/names for array of subscribers (Object with only names and Subscribed Channel)
-// 3. GET https://localhost:3000/subscribers/:id for subscriber with given id(an Object) AND for not found -- staus:400 and error message: {message:error.message}
-
-const Subscribers = require("./models/subscribers");
-
 app.get("/subscribers", async (req, res) => {
   try {
     const allSubscribers = await Subscribers.find();
@@ -30,6 +27,7 @@ app.get("/subscribers", async (req, res) => {
   }
 });
 
+// 2. GET https://localhost:3000/subscribers/names for array of subscribers (Object with only names and Subscribed Channel)
 app.get("/subscribers/names", async (req, res) => {
   try {
     const subscriberNamesAndChannels = await Subscribers.find(
@@ -45,6 +43,7 @@ app.get("/subscribers/names", async (req, res) => {
   }
 });
 
+// 3. GET https://localhost:3000/subscribers/:id for subscriber with given id(an Object) AND for not found -- staus:400 and error message: {message:error.message}
 app.get("/subscribers/:id", async (req, res) => {
   try {
     const matchedSubscriber = await Subscribers.findOne({ _id: req.params.id });
@@ -61,8 +60,9 @@ app.get("/subscribers/:id", async (req, res) => {
   }
 });
 
-app.get("/api-schema-docs", async(req,res)=>{
-  res.redirect( "https://documenter.getpostman.com/view/29625170/2s9YC4VYRw" );
-})
+//redirect to API schema Documentation
+app.get("/api-schema-docs", async (req, res) => {
+  res.redirect("https://documenter.getpostman.com/view/29625170/2s9YC4VYRw");
+});
 
 module.exports = app;
